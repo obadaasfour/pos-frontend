@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-up: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-shake: shake 0.4s ease-in-out;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-6px); }
+  75%       { transform: translateX(6px); }
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-purple {
+  background: rgba(139, 92, 246, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Custom Purple Gradients */
+.bg-purple-gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+}
+
+.text-purple-gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Transitions */
+.transition-glass {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 0 !important;
+  position: relative;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  @apply bg-slate-50 text-slate-900;
+}
+
+/* Force Global Custom Scrollbar (Ultra-Slim & Premium) */
+html, body, * {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(37, 99, 235, 0.4) transparent !important;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) - Forced Specificity */
+::-webkit-scrollbar {
+  width: 5px !important;
+  height: 5px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+  border: none !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.4) !important;
+  border-radius: 20px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 99, 235, 0.8) !important;
+}
+
+/* Ensure no system overrides for specific elements */
+.elegant-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(37, 99, 235, 0.4) transparent !important;
+}
+.elegant-scrollbar::-webkit-scrollbar { width: 5px !important; }
+.elegant-scrollbar::-webkit-scrollbar-track { background: transparent !important; }
+.elegant-scrollbar::-webkit-scrollbar-thumb { 
+  background: rgba(37, 99, 235, 0.4) !important; 
+  border-radius: 20px !important; 
+}
+.elegant-scrollbar::-webkit-scrollbar-thumb:hover { 
+  background: rgba(37, 99, 235, 0.8) !important; 
+}
+/* Global Print Overrides */
+@media print {
+  /* Hide all UI elements from the main app during print */
+  nav, aside, header, .no-print, button, .fab, .sync-indicator {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure thermal receipts are handled correctly if rendered in-page */
+  .thermal-receipt {
+    display: block !important;
+    width: 80mm !important;
+  }
+}
